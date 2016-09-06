@@ -1,7 +1,7 @@
 {
   "name": "react-transitions",
   "author": "szchenghuang <szchenghuang@gmail.com>",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "A collection of animated transitions when React components enter or leave the DOM.",
   "main": "index.js",
   "keywords": [
@@ -20,22 +20,54 @@
     "url": "git+https://github.com/szchenghuang/react-transitions.git"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-register"
+    "lint": "./node_modules/.bin/eslint src",
+    "pretest": "npm run lint",
+    "test": "./node_modules/.bin/mocha --compilers js:babel-register",
+    "prebuild:example": "rm -rf example/dist && mkdir example/dist",
+    "build:example": "./node_modules/.bin/webpack --config ./example/webpack.config.js",
+    "prebuild": "npm run test && rm -rf dist && mkdir dist",
+    "build": "./node_modules/.bin/babel ./src --out-dir ./dist --presets es2015,react && cp ./src/animations.css ./dist/.",
+    "prebuild:fast": "rm -rf dist && mkdir dist",
+    "build:fast": "./node_modules/.bin/babel ./src --out-dir ./dist --presets es2015,react && cp ./src/animations.css ./dist/."
   },
   "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.1.18",
     "babel-register": "^6.11.6",
     "chai": "^3.5.0",
-    "chai-things": "^0.2.0",
+    "css-loader": "^0.25.0",
+    "enzyme": "^2.4.1",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-config-google": "^0.6.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.1",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-react": "^6.2.0",
+    "eslint-plugin-standard": "^2.0.0",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.22.0",
+    "jsdom": "^9.4.5",
+    "jsdom-global": "^2.1.0",
+    "json-loader": "^0.5.4",
     "mocha": "^3.0.1",
-    "react": "^0.14.3"
-  },
-  "peerDevDependencies": {
-    "react": "^0.14.3"
+    "postcss": "^5.1.2",
+    "postcss-loader": "^0.11.1",
+    "react-addons-test-utils": "^15.3.1",
+    "sinon": "^1.17.5",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2"
   },
   "dependencies": {
     "react": "^15.3.1",
-    "react-addons-transition-group": "^15.3.1"
+    "react-dom": "^15.3.1",
+    "react-addons-transition-group": "^15.3.1",
+    "react-addons-css-transition-group": "^15.3.1"
   }
 }

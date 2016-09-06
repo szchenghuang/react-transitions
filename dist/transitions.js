@@ -1,0 +1,460 @@
+'use strict';
+
+var Transitions = [{
+  name: 'move-to-left-move-from-right',
+  leave: 'moveToLeft',
+  enter: 'moveFromRight',
+  leaveTimeout: 600,
+  enterTimeout: 600
+}, {
+  name: 'move-to-right-move-from-left',
+  leave: 'moveToRight',
+  enter: 'moveFromLeft',
+  leaveTimeout: 600,
+  enterTimeout: 600
+}, {
+  name: 'move-to-top-move-from-bottom',
+  leave: 'moveToTop',
+  enter: 'moveFromBottom',
+  leaveTimeout: 600,
+  enterTimeout: 600
+}, {
+  name: 'move-to-bottom-move-from-top',
+  leave: 'moveToBottom',
+  enter: 'moveFromTop',
+  leaveTimeout: 600,
+  enterTimeout: 600
+}, {
+  name: 'fade-move-from-right',
+  leave: 'fade',
+  enter: 'moveFromRight',
+  enterActive: 'delay100-top',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'fade-move-from-left',
+  leave: 'fade',
+  enter: 'moveFromLeft',
+  enterActive: 'delay100-top',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'fade-move-from-bottom',
+  leave: 'fade',
+  enter: 'moveFromBottom',
+  enterActive: 'delay100-top',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'fade-move-from-top',
+  leave: 'fade',
+  enter: 'moveFromTop',
+  enterActive: 'delay100-top',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'move-to-left-fade-move-from-right-fade',
+  leave: 'moveToLeftFade',
+  enter: 'moveFromRightFade',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'move-to-right-fade-move-from-left-fade',
+  leave: 'moveToRightFade',
+  enter: 'moveFromLeftFade',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'move-to-top-fade-move-from-bottom-fade',
+  leave: 'moveToTopFade',
+  enter: 'moveFromBottomFade',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'move-to-bottom-fade-move-from-top-fade',
+  leave: 'moveToBottomFade',
+  enter: 'moveFromTopFade',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'move-to-left-easing-move-from-right',
+  leave: 'moveToLeftEasing',
+  leaveActive: 'react-transitions-top',
+  enter: 'moveFromRight',
+  leaveTimeout: 700,
+  enterTimeout: 600
+}, {
+  name: 'move-to-right-easing-move-from-left',
+  leave: 'moveToRightEasing',
+  leaveActive: 'react-transitions-top',
+  enter: 'moveFromLeft',
+  leaveTimeout: 700,
+  enterTimeout: 600
+}, {
+  name: 'move-to-top-easing-move-from-bottom',
+  leave: 'moveToTopEasing',
+  leaveActive: 'react-transitions-top',
+  enter: 'moveFromBottom',
+  leaveTimeout: 700,
+  enterTimeout: 600
+}, {
+  name: 'move-to-bottom-easing-move-from-top',
+  leave: 'moveToBottomEasing',
+  leaveActive: 'react-transitions-top',
+  enter: 'moveFromTop',
+  leaveTimeout: 700,
+  enterTimeout: 600
+}, {
+  name: 'scale-down-move-from-right',
+  leave: 'scaleDown',
+  enter: 'moveFromRight',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 700,
+  enterTimeout: 600
+}, {
+  name: 'scale-down-move-from-left',
+  leave: 'scaleDown',
+  enter: 'moveFromLeft',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 700,
+  enterTimeout: 600
+}, {
+  name: 'scale-down-move-from-bottom',
+  leave: 'scaleDown',
+  enter: 'moveFromBottom',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 700,
+  enterTimeout: 600
+}, {
+  name: 'scale-down-move-from-top',
+  leave: 'scaleDown',
+  enter: 'moveFromTop',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 700,
+  enterTimeout: 600
+}, {
+  name: 'scale-down-scale-up-down',
+  leave: 'scaleDown',
+  enter: 'delay300',
+  enterActive: 'scaleUpDown',
+  leaveTimeout: 700,
+  enterTimeout: 800
+}, {
+  name: 'scale-down-up-scale-up',
+  leave: 'scaleDownUp',
+  enter: 'delay300',
+  enterActive: 'scaleUp',
+  leaveTimeout: 500,
+  enterTimeout: 1000
+}, {
+  name: 'move-to-left-scale-up',
+  leave: 'moveToLeft',
+  leaveActive: 'react-transitions-top',
+  enter: 'scaleUp',
+  leaveTimeout: 600,
+  enterTimeout: 700
+}, {
+  name: 'move-to-right-scale-up',
+  leave: 'moveToRight',
+  leaveActive: 'react-transitions-top',
+  enter: 'scaleUp',
+  leaveTimeout: 600,
+  enterTimeout: 700
+}, {
+  name: 'move-to-top-scale-up',
+  leave: 'moveToTop',
+  leaveActive: 'react-transitions-top',
+  enter: 'scaleUp',
+  leaveTimeout: 600,
+  enterTimeout: 700
+}, {
+  name: 'move-to-bottom-scale-up',
+  leave: 'moveToBottom',
+  leaveActive: 'react-transitions-top',
+  enter: 'scaleUp',
+  leaveTimeout: 600,
+  enterTimeout: 700
+}, {
+  name: 'scale-down-center-scale-up-center',
+  leave: 'scaleDownCenter',
+  enter: 'delay400',
+  enterActive: 'scaleUpCenter',
+  leaveTimeout: 400,
+  enterTimeout: 800
+}, {
+  name: 'rotate-right-side-first-move-from-right',
+  leave: 'rotateRightSideFirst',
+  enter: 'moveFromRight',
+  enterActive: 'delay200-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-left-side-first-move-from-left',
+  leave: 'rotateLeftSideFirst',
+  enter: 'moveFromLeft',
+  enterActive: 'delay200-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-top-side-first-move-from-top',
+  leave: 'rotateTopSideFirst',
+  enter: 'moveFromTop',
+  enterActive: 'delay200-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-bottom-side-first-move-from-bottom',
+  leave: 'rotateBottomSideFirst',
+  enter: 'moveFromBottom',
+  enterActive: 'delay200-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'flip-out-right-flip-in-left',
+  leave: 'flipOutRight',
+  enterActive: 'flipInLeft',
+  enter: 'delay500',
+  leaveTimeout: 500,
+  enterTimeout: 1000
+}, {
+  name: 'flip-out-left-flip-in-right',
+  leave: 'flipOutLeft',
+  enter: 'flipInRight',
+  enterActive: 'delay500',
+  leaveTimeout: 500,
+  enterTimeout: 1000
+}, {
+  name: 'flip-out-top-flip-in-bottom',
+  leave: 'flipOutTop',
+  enter: 'flipInBottom',
+  enterActive: 'delay500',
+  leaveTimeout: 500,
+  enterTimeout: 1000
+}, {
+  name: 'flip-out-bottom-flip-in-top',
+  leave: 'flipOutBottom',
+  enter: 'flipInTop',
+  enterActive: 'delay500',
+  leaveTimeout: 500,
+  enterTimeout: 1000
+}, {
+  name: 'rotate-fall-scale-up',
+  leave: 'rotateFall',
+  leaveActive: 'react-transitions-top',
+  enter: 'scallUp',
+  leaveTimeout: 1000,
+  enterTimeout: 700
+}, {
+  name: 'rotate-out-newspaper-rotate-in-newspaper',
+  leave: 'rotateOutNewspaper',
+  enter: 'delay500',
+  enterActive: 'rotateInNewspaper',
+  leaveTimeout: 500,
+  enterTimeout: 1000
+}, {
+  name: 'rotate-push-left-move-from-right',
+  leave: 'rotatePushLeft',
+  enter: 'moveFromRight',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-push-right-move-from-left',
+  leave: 'rotatePushRight',
+  enter: 'moveFromLeft',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-push-top-move-from-bottom',
+  leave: 'rotatePushTop',
+  enter: 'moveFromBottom',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-push-bottom-move-from-top',
+  leave: 'rotatePushBottom',
+  enter: 'moveFromTop',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-push-left-rotate-pull-right',
+  leave: 'rotatePushLeft',
+  enter: 'delay180',
+  enterActive: 'rotatePullRight',
+  leaveTimeout: 800,
+  enterTimeout: 680
+}, {
+  name: 'rotate-push-right-rotate-pull-left',
+  leave: 'rotatePushRight',
+  enter: 'delay180',
+  enterActive: 'rotatePullLeft',
+  leaveTimeout: 800,
+  enterTimeout: 680
+}, {
+  name: 'rotate-push-top-rotate-pull-bottom',
+  leave: 'rotatePushTop',
+  enter: 'delay180',
+  enterActive: 'rotatePullBottom',
+  leaveTimeout: 800,
+  enterTimeout: 680
+}, {
+  name: 'rotate-push-bottom-rotate-pull-top',
+  leave: 'rotatePushBottom',
+  enter: 'delay180',
+  enterActive: 'rotatePullTop',
+  leaveTimeout: 800,
+  enterTimeout: 680
+}, {
+  name: 'rotate-fold-left-move-from-right-fade',
+  leave: 'rotateFoldLeft',
+  enter: 'moveFromRightFade',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'rotate-fold-right-move-from-left-fade',
+  leave: 'rotateFoldRight',
+  enter: 'moveFromLeftFade',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'rotate-fold-top-move-from-bottom-fade',
+  leave: 'rotateFoldTop',
+  enter: 'moveFromBottomFade',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'rotate-fold-bottom-move-from-top-fade',
+  leave: 'rotateFoldBottom',
+  enter: 'moveFromTopFade',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'move-to-right-fade-rotate-unfold-left',
+  leave: 'moveToRightFade',
+  enter: 'rotateUnfoldLeft',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'move-to-left-fade-rotate-unfold-right',
+  leave: 'moveToLeftFade',
+  enter: 'rotateUnfoldRight',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'move-to-bottom-fade-rotate-unfold-top',
+  leave: 'moveToBottomFade',
+  enter: 'rotateUnfoldTop',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'move-to-top-fade-rotate-unfold-bottom',
+  leave: 'moveToTopFade',
+  enter: 'rotateUnfoldBottom',
+  leaveTimeout: 700,
+  enterTimeout: 700
+}, {
+  name: 'rotate-room-left-out-rotate-room-left-in',
+  leave: 'rotateRoomLeftOut',
+  leaveActive: 'react-transitions-top',
+  enter: 'rotateRoomLeftIn',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-room-right-out-rotate-room-right-in',
+  leave: 'rotateRoomRightOut',
+  leaveActive: 'react-transitions-top',
+  enter: 'rotateRoomRightIn',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-room-top-out-rotate-room-top-in',
+  leave: 'rotateRoomTopOut',
+  leaveActive: 'react-transitions-top',
+  enter: 'rotateRoomTopIn',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-room-bottom-out-rotate-room-bottom-in',
+  leave: 'rotateRoomBottomOut',
+  leaveActive: 'react-transitions-top',
+  enter: 'rotateRoomBottomIn',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-cube-left-out-rotate-cube-left-in',
+  leave: 'rotateCubeLeftOut',
+  enter: 'rotateCubeLeftIn',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 600,
+  enterTimeout: 600
+}, {
+  name: 'rotate-cube-right-out-rotate-cube-right-in',
+  leave: 'rotateCubeRightOut',
+  enter: 'rotateCubeRightIn',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 600,
+  enterTimeout: 600
+}, {
+  name: 'rotate-cube-top-out-rotate-cube-top-in',
+  leave: 'rotateCubeTopOut',
+  enter: 'rotateCubeTopIn',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 600,
+  enterTimeout: 600
+}, {
+  name: 'rotate-cube-bottom-out-rotate-cube-bottom-in',
+  leave: 'rotateCubeBottomOut',
+  enter: 'rotateCubeBottomIn',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 600,
+  enterTimeout: 600
+}, {
+  name: 'rotate-carousel-left-out-rotate-carousel-left-in',
+  leave: 'rotateCarouselLeftOut',
+  enter: 'rotateCarouselLeftIn',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-carousel-right-out-rotate-carousel-right-in',
+  leave: 'rotateCarouselRightOut',
+  enter: 'rotateCarouselRightIn',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-carousel-top-out-rotate-carousel-top-in',
+  leave: 'rotateCarouselTopOut',
+  enter: 'rotateCarouselTopIn',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'rotate-carousel-bottom-out-rotate-carousel-bottom-in',
+  leave: 'rotateCarouselBottomOut',
+  enter: 'rotateCarouselBottomIn',
+  enterActive: 'react-transitions-top',
+  leaveTimeout: 800,
+  enterTimeout: 800
+}, {
+  name: 'sides',
+  leave: 'rotateSidesOut',
+  enter: 'delay200',
+  enterActive: 'rotateSidesIn',
+  leaveTimeout: 500,
+  enterTimeout: 700
+}, {
+  name: 'slide',
+  leave: 'rotateSlideOut',
+  enter: 'rotateSlideIn',
+  leaveTimeout: 1000,
+  enterTimeout: 1000
+}];
+
+// #############################################################################
+// Exports.
+// #############################################################################
+module.exports = Transitions;

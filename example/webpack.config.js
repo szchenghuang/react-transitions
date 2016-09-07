@@ -5,7 +5,7 @@ var HTMLWebpackPlugin = require('html-webpack-plugin');
 const PATHS = {
     lib: Path.join(__dirname, '../dist'),
     src: Path.join(__dirname, './'),
-    build: Path.join(__dirname, './dist'),
+    build: Path.join(__dirname, '../docs'),
     node_modules: Path.join(__dirname, '../node_modules')
 };
 
@@ -15,7 +15,7 @@ const config = {
     ],
     output: {
         path: PATHS.build,
-        publicPath: '/',
+        publicPath: './',
         filename: 'bundle.js'
     },
     resolve: {

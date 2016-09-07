@@ -23,7 +23,7 @@
     "lint": "./node_modules/.bin/eslint src",
     "pretest": "npm run lint",
     "test": "./node_modules/.bin/mocha --compilers js:babel-register",
-    "prebuild:example": "rm -rf example/dist && mkdir example/dist",
+    "prebuild:example": "rm -rf docs && mkdir docs",
     "build:example": "./node_modules/.bin/webpack --config ./example/webpack.config.js",
     "prebuild": "npm run test && rm -rf dist && mkdir dist",
     "build": "./node_modules/.bin/babel ./src --out-dir ./dist --presets es2015,react && cp ./src/animations.css ./dist/.",

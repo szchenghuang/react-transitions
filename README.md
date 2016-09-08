@@ -64,7 +64,7 @@ There are some more options ready for you. Either make use of the [demo][demo] p
 the contents of `ReactTransitions.Transitions` which should always be up-to-date.
 
 ## Acknowledgement ##
-The CSS aminations used in this package are based on [resources][codrops_pkg] on [Codrops][codrop] with
+The CSS aminations used in this package are based on [resources][codrops_pkg] on [Codrops][codrops] with
 adequate adoption for React. Thanks for the awesome creation shared by Codrops.
 
 ## License ##

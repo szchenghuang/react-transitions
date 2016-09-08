@@ -103,5 +103,15 @@ describe( 'react-transitions', function() {
                 done();
             }, 1000 );
         });
+
+        it( 'should transition happen', function() {
+            const container = mount( <Component /> );
+
+            assert.lengthOf( container.children(), 0 );
+
+            container.setProps({ child: childOne });
+
+            assert.isTrue( container.contains( childOne ) );
+        });
     });
 });

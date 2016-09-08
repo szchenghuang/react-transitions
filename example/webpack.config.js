@@ -36,24 +36,8 @@ const config = {
             loaders: [ 'style-loader', 'css-loader' ],
             include: [ PATHS.lib, PATHS.src ]
         }, {
-            test: /\.scss$/,
-            loaders: [ 'style-loader', 'css-loader', 'sass-loader' ],
-            include: [ PATHS.lib, PATHS.src ]
-        }, {
-            test: /\.less$/,
-            loaders: [ 'style-loader', 'css-loader', 'less-loader' ],
-            include: [ PATHS.lib, PATHS.src ]
-        }, {
             test: /\.(jpe?g|png|gif|svg)$/i,
             loaders: [ 'url-loader?limit=8192' ],
-            include: [ PATHS.lib, PATHS.src ]
-        }, {
-            test: /\.(woff|woff2)(2)?(\?v=[0-9].[0-9].[0-9])?$/,
-            loaders: [ 'url-loader?limit=10000&mimetype=application/font-woff' ],
-            include: [ PATHS.src, PATHS.example ]
-        }, {
-            test: /\.(eot|ttf|svg)(\?v=[0-9].[0-9].[0-9])?$/,
-            loaders: [ 'file-loader?name=[name].[ext]' ],
             include: [ PATHS.lib, PATHS.src ]
         }, {
             test: /\.json$/,

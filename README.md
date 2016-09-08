@@ -39,15 +39,17 @@ If you need to include the stylesheet otherwise, you can copy the file [here][an
     width={ 600 }
     height={ 300 }
 >
+    {/* The child element put here changes with animation. */}
     <img key="uniqueKey" src="..." />
 </ReactTransitions>
 ```
 
-ReactTransitions Props | Type | Value
+ReactTransitions Props | Type | Description
 ---------------------- | ---- | -----
 transition | string, **_required_** | See [transitions](#transitions)
 width | number or string, **_required_** |
 height | number or string, **_required_** |
+childern | element | **Restricted to a single element in that it is animated as a whole.**
 
 ## <a name="transitions"></a>Transitions
 This package comes with a set of animated transitions out of the box. `ReactTransitions.Transitions`

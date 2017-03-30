@@ -1,10 +1,10 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Transitions from './transitions';
 
-const TransitionNames = Transitions.map( function( transition ) { return transition.name; } );
+const TransitionNames = Transitions.map( transition => transition.name );
 
 const childWrapperStyle = {
   position: 'absolute',
@@ -15,51 +15,25 @@ const childWrapperStyle = {
   backfaceVisibility: 'hidden'
 };
 
-const ReactTransitions = React.createClass({
-  propTypes: {
-    children: ( props, propName, componentName/*, location, propFullName*/ ) => {
-      if ( props[ propName ] == null ) {
-        return null;
-      }
-
-      if ( React.Children.count( props[ propName ] ) > 1 ) {
-        return new Error(
-          `Invalid \`${propName}\` supplied to ` +
-          `\`${componentName}\`, expected a single ReactElement.`
-        );
-      }
-
-      const child = React.Children.only( props[ propName ] );
-
-      if ( !React.isValidElement( child ) ) {
-        return new Error(
-          `Child \`${propName}\` in ` +
-          `\`${componentName}\` is not a valid React element.`
-        );
-      }
-
-      if ( !child.key ) {
-        return new Error(
-          `Key is not provided to \`${propName}\` in ` +
-          `\`${componentName}\`.`
-        );
-      }
-
-      return null;
-    },
-    transition: PropTypes.oneOf( TransitionNames ).isRequired,
-    width: PropTypes.oneOfType( [ PropTypes.number, PropTypes.string ] ).isRequired,
-    height: PropTypes.oneOfType( [ PropTypes.number, PropTypes.string ] ).isRequired
-  },
+class ReactTransitions extends PureComponent {
   render() {
-    const { width, height, transition: transitionName } = this.props;
+    const {
+      children,
+      width,
+      height,
+      transition,
+      ...restProps
+    } = this.props;
 
-    if ( !width || !height || !transitionName ) {
+    if ( !width || !height || !transition ) {
       return null;
     }
 
-    const transition = Transitions.find( transition => transitionName === transition.name );
-    const { leave, leaveActive, enter, enterActive, leaveTimeout, enterTimeout } = transition;
+    const {
+      leave, leaveActive,
+      enter, enterActive,
+      leaveTimeout, enterTimeout
+    } = Transitions.find( t => transition === t.name );
 
     return (
       <ReactCSSTransitionGroup
@@ -78,8 +52,10 @@ const ReactTransitions = React.createClass({
           enterActive: enterActive || ''
         }}
         transitionLeaveTimeout={ leaveTimeout }
-        transitionEnterTimeout={ enterTimeout }>
-        { React.Children.map( this.props.children, child => (
+        transitionEnterTimeout={ enterTimeout }
+        { ...restProps }
+      >
+        { React.Children.map( children, child => (
           <div style={ childWrapperStyle }>
             { child }
           </div>
@@ -87,10 +63,43 @@ const ReactTransitions = React.createClass({
       </ReactCSSTransitionGroup>
     );
   }
-});
+}
 
-// #############################################################################
-// Exports.
-// #############################################################################
+ReactTransitions.propTypes = {
+  children: ( props, propName, componentName ) => {
+    if ( props[ propName ] == null ) {
+      return null;
+    }
+
+    if ( React.Children.count( props[ propName ] ) > 1 ) {
+      return new Error(
+        `Invalid \`${propName}\` supplied to ` +
+        `\`${componentName}\`, expected a single ReactElement.`
+      );
+    }
+
+    const child = React.Children.only( props[ propName ] );
+
+    if ( !React.isValidElement( child ) ) {
+      return new Error(
+        `Child \`${propName}\` in ` +
+        `\`${componentName}\` is not a valid React element.`
+      );
+    }
+
+    if ( !child.key ) {
+      return new Error(
+        `Key is not provided to \`${propName}\` in ` +
+        `\`${componentName}\`.`
+      );
+    }
+
+    return null;
+  },
+  transition: PropTypes.oneOf( TransitionNames ).isRequired,
+  width: PropTypes.oneOfType( [ PropTypes.number, PropTypes.string ] ).isRequired,
+  height: PropTypes.oneOfType( [ PropTypes.number, PropTypes.string ] ).isRequired
+};
+
 module.exports = ReactTransitions;
 module.exports.Transitions = TransitionNames;

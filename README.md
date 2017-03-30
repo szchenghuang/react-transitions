@@ -14,7 +14,7 @@ Check out the live [demo][demo] for available built-in animations.
 ## Installation ##
 
 ```sh
-npm install react-transitions
+npm install -s react-transitions
 ```
 
 ## Usage ##
@@ -30,25 +30,25 @@ If your project has set up appropriate CSS loaders, just import the CSS
 import 'react-transitions/dist/animations.css';
 ```
 
-If you need to include the stylesheet otherwise, you can copy the file [here][animations_css].
+If you need to include the stylesheet otherwise, associate the file [here][animations_css].
 
 ### Render
 ```js
 <ReactTransitions
-    transition={ "move-to-left-move-from-right" }
-    width={ 600 }
-    height={ 300 }
+  transition="move-to-left-move-from-right"
+  width={ 600 }
+  height={ 300 }
 >
-    {/* The child element put here changes with animation. */}
-    <img key="uniqueKey" src="..." />
+  {/* The child element put here changes with animation. */}
+  <img key="uniqueKey" src="..." />
 </ReactTransitions>
 ```
 
 ReactTransitions Props | Type | Description
 ---------------------- | ---- | -----
 transition | string, **_required_** | See [transitions](#transitions)
-width | number or string, **_required_** |
-height | number or string, **_required_** |
+width | number (in px) or string, **_required_** |
+height | number (in px) or string, **_required_** |
 childern | element, or null | **Restricted to a single element in that it is animated as a whole.**
 
 ## <a name="transitions"></a>Transitions

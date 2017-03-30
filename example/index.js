@@ -1,29 +1,13 @@
 'use strict';
 
-//#############################################################################
-// Stylesheets.
-//#############################################################################
 import '../dist/animations.css';
 
-//#############################################################################
-// Library includes.
-//#############################################################################
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTransitions from '../';
 
-//#############################################################################
-// Application includes.
-//#############################################################################
-
-//#############################################################################
-// Constants.
-//#############################################################################
 const Transitions = ReactTransitions.Transitions;
 
-//#############################################################################
-// Inline styles.
-//#############################################################################
 const centeredStyle = {
   position: 'absolute',
   transform: 'translate(-50%, -50%)',
@@ -52,9 +36,6 @@ const divSemiGrandStyle = Object.assign( {}, divGrandStyle, {
 const divSemiGrandUpStyle = Object.assign( {}, divSemiGrandStyle, { backgroundColor: 'lightpink' } );
 const divSemiGrandDownStyle = Object.assign( {}, divSemiGrandStyle, { backgroundColor: 'lightgreen' }, noWrapStyle );
 
-//#############################################################################
-// React components.
-//#############################################################################
 const Comps = [
   <img src={ require( './images/1.jpg' ) } style={ childStyle } />,
   <img src={ require( './images/2.jpg' ) } style={ childStyle } />,

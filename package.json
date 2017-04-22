@@ -1,7 +1,7 @@
 {
   "name": "react-transitions",
   "author": "szchenghuang <szchenghuang@gmail.com>",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A collection of animated transitions when React components enter or leave the DOM.",
   "main": "index.js",
   "keywords": [

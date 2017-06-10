@@ -1,6 +1,8 @@
 .babelrc
 .eslintrc
+.gitignore
+npmignore
+docs
 example
 src
 test
-webpack.config.js

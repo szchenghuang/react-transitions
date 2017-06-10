@@ -26,9 +26,9 @@
     "prebuild:example": "rm -rf docs && mkdir docs",
     "build:example": "./node_modules/.bin/webpack --config ./example/webpack.config.js",
     "prebuild": "npm run test && rm -rf dist && mkdir dist",
-    "build": "./node_modules/.bin/babel ./src --out-dir ./dist --presets es2015,react && cp ./src/animations.css ./dist/.",
+    "build": "./node_modules/.bin/babel ./src --out-dir ./dist && cp ./src/animations.css ./dist/.",
     "prebuild:fast": "rm -rf dist && mkdir dist",
-    "build:fast": "./node_modules/.bin/babel ./src --out-dir ./dist --presets es2015,react && cp ./src/animations.css ./dist/."
+    "build:fast": "./node_modules/.bin/babel ./src --out-dir ./dist && cp ./src/animations.css ./dist/."
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",

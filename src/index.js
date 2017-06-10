@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 import Transitions from './transitions';
 
 const TransitionNames = Transitions.map( transition => transition.name );
@@ -43,7 +43,7 @@ class ReactTransitions extends React.Component {
     ));
 
     return (
-      <ReactCSSTransitionGroup
+      <CSSTransitionGroup
         component="div"
         style={{
           perspective: 1200,
@@ -63,7 +63,7 @@ class ReactTransitions extends React.Component {
         { ...restProps }
       >
         { childComponents }
-      </ReactCSSTransitionGroup>
+      </CSSTransitionGroup>
     );
   }
 }

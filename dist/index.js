@@ -12,9 +12,7 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
-
-var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+var _reactTransitionGroup = require('react-transition-group');
 
 var _transitions = require('./transitions');
 
@@ -43,8 +41,8 @@ var childWrapperStyle = {
   backfaceVisibility: 'hidden'
 };
 
-var ReactTransitions = function (_PureComponent) {
-  _inherits(ReactTransitions, _PureComponent);
+var ReactTransitions = function (_React$Component) {
+  _inherits(ReactTransitions, _React$Component);
 
   function ReactTransitions() {
     _classCallCheck(this, ReactTransitions);
@@ -79,8 +77,16 @@ var ReactTransitions = function (_PureComponent) {
       var enterTimeout = _Transitions$find.enterTimeout;
 
 
+      var childComponents = _react2.default.Children.map(children, function (child, index) {
+        return _react2.default.createElement(
+          'div',
+          { key: index, style: childWrapperStyle },
+          child
+        );
+      });
+
       return _react2.default.createElement(
-        _reactAddonsCssTransitionGroup2.default,
+        _reactTransitionGroup.CSSTransitionGroup,
         _extends({
           component: 'div',
           style: {
@@ -99,19 +105,13 @@ var ReactTransitions = function (_PureComponent) {
           transitionLeaveTimeout: leaveTimeout,
           transitionEnterTimeout: enterTimeout
         }, restProps),
-        _react2.default.Children.map(children, function (child) {
-          return _react2.default.createElement(
-            'div',
-            { style: childWrapperStyle },
-            child
-          );
-        })
+        childComponents
       );
     }
   }]);
 
   return ReactTransitions;
-}(_react.PureComponent);
+}(_react2.default.Component);
 
 ReactTransitions.propTypes = {
   children: function children(props, propName, componentName) {

@@ -4,9 +4,7 @@ import '../dist/animations.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactTransitions from '../';
-
-const Transitions = ReactTransitions.Transitions;
+import ReactTransitions, { Transitions } from '../';
 
 const centeredStyle = {
   position: 'absolute',
@@ -22,19 +20,30 @@ const childStyle = {
   height: 400,
   backgroundColor: 'powderblue'
 };
-const divGrandStyle = Object.assign( {}, {
+const divGrandStyle = {
   textAlign: 'center',
   fontFamily: '"Lato", Calibri, Arial, sans-serif',
   fontSize: 60,
   color: '#fff'
-});
-const divCenteredGrandStyle = Object.assign( {}, divGrandStyle, centeredStyle );
-const divSemiGrandStyle = Object.assign( {}, divGrandStyle, {
+};
+const divCenteredGrandStyle = {
+  ...divGrandStyle,
+  ...centeredStyle
+};
+const divSemiGrandStyle = {
+  ...divGrandStyle,
   height: '50%',
   position: 'relative'
-});
-const divSemiGrandUpStyle = Object.assign( {}, divSemiGrandStyle, { backgroundColor: 'lightpink' } );
-const divSemiGrandDownStyle = Object.assign( {}, divSemiGrandStyle, { backgroundColor: 'lightgreen' }, noWrapStyle );
+};
+const divSemiGrandUpStyle = {
+  ...divSemiGrandStyle,
+  backgroundColor: 'lightpink'
+};
+const divSemiGrandDownStyle = {
+  ...divSemiGrandStyle,
+  backgroundColor: 'lightgreen',
+  ...noWrapStyle
+};
 
 const Comps = [
   <img src={ require( './images/1.jpg' ) } style={ childStyle } />,
@@ -52,13 +61,14 @@ const Comps = [
   </div>
 ];
 
-const App = React.createClass({
-  getInitialState() {
-    return {
+class App extends React.Component {
+  constructor( props ) {
+    super( props );
+    this.state = {
       clicked: 0,
       transition: Transitions[ 0 ]
     };
-  },
+  }
   render() {
     const index = this.state.clicked % Comps.length;
     const comp = React.cloneElement( Comps[ index ], { key: index } );
@@ -66,30 +76,26 @@ const App = React.createClass({
     return (
       <div>
         <p>
-          <select onChange={ event => this.setState({ transition: event.target.value }) }>
+          <select onChange={ event => this.setState( { transition: event.target.value } ) }>
           { Transitions.map( ( transition, index ) => (
             <option key={ index } value={ transition }>
               { `${index + 1}: ${transition}` }
             </option>
           ))}
           </select>
-          &nbsp;<button onClick={ () => this.setState({ clicked: this.state.clicked + 1 }) }>Animate</button>
+          &nbsp;<button onClick={ () => this.setState( { clicked: this.state.clicked + 1 } ) }>Animate</button>
         </p>
         <ReactTransitions
           width={ 600 }
           height={ 400 }
-          transition={ this.state.transition }>
+          transition={ this.state.transition }
+        >
           { comp }
         </ReactTransitions>
         <p>Transition name: <strong>{ this.state.transition }</strong></p>
       </div>
     );
   }
-});
+}
 
-window.onload = () => {
-  ReactDOM.render(
-    <App />,
-    document.querySelector( '#container' )
-  );
-};
+window.onload = () => ReactDOM.render( <App />, document.querySelector( '#container' ) );

@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Transitions from './transitions';
@@ -16,7 +16,7 @@ const childWrapperStyle = {
   backfaceVisibility: 'hidden'
 };
 
-class ReactTransitions extends PureComponent {
+class ReactTransitions extends React.Component {
   render() {
     const {
       children,

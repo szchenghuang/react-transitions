@@ -36,6 +36,12 @@ class ReactTransitions extends React.Component {
       leaveTimeout, enterTimeout
     } = Transitions.find( t => transition === t.name );
 
+    const childComponents = React.Children.map( children, ( child, index ) => (
+      <div key={ index } style={ childWrapperStyle }>
+        { child }
+      </div>
+    ));
+
     return (
       <ReactCSSTransitionGroup
         component="div"
@@ -56,11 +62,7 @@ class ReactTransitions extends React.Component {
         transitionEnterTimeout={ enterTimeout }
         { ...restProps }
       >
-        { React.Children.map( children, child => (
-          <div style={ childWrapperStyle }>
-            { child }
-          </div>
-        ))}
+        { childComponents }
       </ReactCSSTransitionGroup>
     );
   }

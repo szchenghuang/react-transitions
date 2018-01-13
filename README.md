@@ -49,7 +49,7 @@ ReactTransitions Props | Type | Description
 transition | string, **_required_** | See [transitions](#transitions)
 width | number (in px) or string, **_required_** |
 height | number (in px) or string, **_required_** |
-childern | element, or null | **Restricted to a single element in that it is animated as a whole.**
+children | element, or null | **Restricted to a single element in that it is animated as a whole.**
 
 ## <a name="transitions"></a>Transitions
 This package comes with a set of animated transitions out of the box. `ReactTransitions.Transitions`
